@@ -15,6 +15,9 @@
   "directories": {
     "doc": "docs"
   },
+  "engines": {
+    "node": "10.19.0"
+  },
   "devDependencies": {},
   "repository": {
     "type": "git",
