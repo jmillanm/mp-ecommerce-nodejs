@@ -1,7 +1,7 @@
 {
   "name": "mp-ecommerce-nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Este e-commerce de ejemplo será la base para la integración de MercadoPago con `nodejs`.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "express-handlebars": "^3.1.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmillanm/mp-ecommerce-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmillanm/mp-ecommerce-nodejs/issues"
+  },
+  "homepage": "https://github.com/jmillanm/mp-ecommerce-nodejs#readme"
 }
