@@ -1,20 +1,43 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var express = require("express");
+var exphbs = require("express-handlebars");
 
 var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const PaymentController = require("./controllers/PaymentController");
+const PaymentService = require("./services/PaymentService");
+const PaymentInstance = new PaymentController(new PaymentService());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
 
-module.exports = app;
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.get("/detail", (req, res) => {
+  res.render("detail", req.query);
+});
+
+app.get("/success", (req, res) => {
+  res.render("success", req.query);
+});
+
+app.get("/error", (req, res) => {
+  res.render("error");
+});
+
+app.get("/pending", (req, res) => {
+  res.render("pending");
+});
+
+app.post("/payment/new", (req, res) =>
+  PaymentInstance.getMercadoPagoLink(req, res)
+);
+
+app.post("/webhook", (req, res) => PaymentInstance.webhook(req, res));
+
+app.use(express.static("assets"));
+
+app.use("/assets", express.static(__dirname + "/assets"));
+
+app.listen(process.env.PORT || 3000);
