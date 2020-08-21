@@ -1,8 +1,37 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
- 
 var app = express();
- 
+
+// SDK de Mercado Pago
+const mercadopago = require ('mercadopago');
+
+// Agrega credenciales
+mercadopago.configure({
+  access_token: 'TEST-5445896726241933-082116-dcf027175d54b5e8002e250c120398d1-268715267'
+});
+
+// Crea un objeto de preferencia
+let preference = {
+  items: [
+    {
+      title: 'Mi producto',
+      unit_price: 100,
+      quantity: 1,
+    }
+  ]
+};
+
+mercadopago.preferences.create(preference)
+.then(function(response){
+// Este valor reemplazará el string "<%= global.id %>" en tu HTML
+  global.id = response.body.id;
+}).catch(function(error){
+  console.log(error);
+});
+
+
+
+
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
