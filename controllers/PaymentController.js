@@ -35,8 +35,8 @@ class PaymentController {
           res.end("ok");
         });
       }
-      console.log(body)
-      return res.status(201);
+      
+      return console.log(body);
     }
   }
   
