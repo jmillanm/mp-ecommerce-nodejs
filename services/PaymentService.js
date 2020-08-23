@@ -60,7 +60,7 @@ class PaymentService {
         pending: "https://jmillanm-mp-commerce-nodejs.herokuapp.com/pending",
         failure: "https://jmillanm-mp-commerce-nodejs.herokuapp.com/error"
       },
-      notification_url: "https://hookb.in/RZjZNxx20rSREEj72YVB",
+      notification_url: "https://webhook.site/c31e110a-db81-463c-961d-2d3ca80e9a95",
       auto_return: "approved"
     };
 
